@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+       http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
+
+    <reference id="monitorDictBeanService"
+               interface="com.kalix.monitor.system.dict.api.biz.IMonitorDictBeanService"/>
+    <camelContext id="monitorDictCamel" xmlns="http://camel.apache.org/schema/blueprint">
+
+        <restConfiguration component="servlet" bindingMode="json">
+            <dataFormatProperty key="prettyPrint" value="${rest.pretty}"/>
+        </restConfiguration>
+
+        <rest path="/monitor/dicts" consumes="application/json;charset=utf-8" produces="application/json">
+            <description>audit rest service</description>
+
+            <get id="route-getAllMonitorDict" outType="com.kalix.framework.core.api.persistence.JsonData">
+                <description>Find all MonitorDict</description>
+                <to uri="bean:monitorDictBeanService?method=getAllEntityByQuery(${header.page},${header.limit},${header.jsonStr},${header.sort})"/>
+            </get>
+
+            <post id="route-addMonitorDict" type="com.kalix.monitor.system.dict.entities.MonitorDictBean"
+                  outType="com.kalix.framework.core.api.persistence.JsonStatus">
+                <description>Create a MonitorDict</description>
+                <to uri="bean:monitorDictBeanService?method=saveEntity"/>
+            </post>
+        </rest>
+        <rest path="/monitor/dicts/{id}" consumes="application/json;charset=utf-8" produces="application/json">
+
+            <get id="route-getMonitorDict" type="com.kalix.monitor.system.dict.entities.MonitorDictBean">
+                <description>Find MonitorDict by id</description>
+                <to uri="bean:monitorDictBeanService?method=getEntity(${header.id})"/>
+            </get>
+
+            <put id="route-updateMonitorDict" type="com.kalix.monitor.system.dict.entities.MonitorDictBean"
+                 outType="com.kalix.framework.core.api.persistence.JsonStatus">
+                <description>Updates a MonitorDict</description>
+                <to uri="bean:monitorDictBeanService?method=updateEntity"/>
+            </put>
+
+            <delete id="route-deleteMonitorDict"
+                    outType="com.kalix.framework.core.api.persistence.JsonStatus">
+                <description>Delete a MonitorDict</description>
+                <to uri="bean:monitorDictBeanService?method=deleteEntity(${header.id})"/>
+            </delete>
+        </rest>
+        <rest path="/monitor/dicts/cache/list" consumes="application/json;charset=utf-8"
+              produces="application/json;charset=utf-8">
+            <get id="route-getAllMonitorDictInCache">
+                <description>Find all dicts</description>
+                <to uri="bean:monitorDictBeanService?method=getAllEntity()"/>
+            </get>
+        </rest>
+        <rest path="/monitor/dicts/types/list" consumes="application/json;charset=utf-8"
+              produces="application/json;charset=utf-8">
+            <get id="route-getAllMonitorDictTypes">
+                <description>Find all dicts</description>
+                <to uri="bean:monitorDictBeanService?method=getDictTypes(${header.query})"/>
+            </get>
+        </rest>
+    </camelContext>
+</blueprint>

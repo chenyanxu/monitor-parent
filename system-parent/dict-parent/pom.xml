@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>system-parent</artifactId>
+        <groupId>com.kalix.monitor.system</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.kalix.monitor.system.dict</groupId>
+    <artifactId>dict-parent</artifactId>
+    <name>Kalix Monitor System Dict Parent</name>
+    <modules>
+        <module>monitor-system-dict-entities</module>
+        <module>monitor-system-dict-api</module>
+        <module>monitor-system-dict-dao</module>
+        <module>monitor-system-dict-biz</module>
+        <module>monitor-system-dict-rest</module>
+    </modules>
+    <packaging>pom</packaging>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.kalix.monitor.system.dict</groupId>
+                <artifactId>monitor-system-dict-entities</artifactId>
+                <version>${project.monitor.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kalix.monitor.system.dict</groupId>
+                <artifactId>monitor-system-dict-api</artifactId>
+                <version>${project.monitor.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

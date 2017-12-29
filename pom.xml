@@ -18,7 +18,7 @@
         <connection>scm:git:https://github.com/chenyanxu/monitor-parent.git</connection>
         <developerConnection>scm:git:https://github.com/chenyanxu/monitor-parent.git</developerConnection>
       <tag>HEAD</tag>
-  </scm>
+    </scm>
 
     <dependencyManagement>
         <dependencies>
@@ -29,21 +29,39 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>com.kalix.framework.core</groupId>
+                <artifactId>framework-core-api</artifactId>
+                <version>${project.framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kalix.framework.core</groupId>
+                <artifactId>framework-core-impl</artifactId>
+                <version>${project.framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kalix.admin.core</groupId>
+                <artifactId>admin-core-api</artifactId>
+                <version>${project.admin.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
-    <dependencies>
-        <!--<dependency>-->
-            <!--<groupId>com.kalix.framework.poms</groupId>-->
-            <!--<artifactId>framework-poms-dm</artifactId>-->
-            <!--<type>pom</type>-->
-            <!--<version>${project.framework.version}</version>-->
-        <!--</dependency>-->
 
+    <dependencies>
         <dependency>
             <groupId>com.kalix.framework.core</groupId>
             <artifactId>framework-core-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.kalix.framework.core</groupId>
+            <artifactId>framework-core-impl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kalix.admin.core</groupId>
+            <artifactId>admin-core-api</artifactId>
+        </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -64,6 +82,13 @@
             </extension>
         </extensions>
     </build>
+
+    <modules>
+        <module>hardware-parent</module>
+        <module>core-parent</module>
+        <module>system-parent</module>
+    </modules>
+
     <!--<reporting>-->
         <!--<plugins>-->
             <!--<plugin>-->
