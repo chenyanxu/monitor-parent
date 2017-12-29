@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>monitor-parent</artifactId>
+        <groupId>com.kalix.monitor</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.kalix.monitor.hardware</groupId>
+    <artifactId>hardware-parent</artifactId>
+    <name>Kalix Monitor Hardware Parent</name>
+    <modules>
+        <module>monitor-hardware-api</module>
+        <module>monitor-hardware-entities</module>
+        <module>monitor-hardware-dao</module>
+        <module>monitor-hardware-biz</module>
+        <module>monitor-hardware-rest</module>
+    </modules>
+    <packaging>pom</packaging>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.kalix.monitor.hardware</groupId>
+                <artifactId>monitor-hardware-entities</artifactId>
+                <version>${project.monitor.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kalix.monitor.hardware</groupId>
+                <artifactId>monitor-hardware-api</artifactId>
+                <version>${project.monitor.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

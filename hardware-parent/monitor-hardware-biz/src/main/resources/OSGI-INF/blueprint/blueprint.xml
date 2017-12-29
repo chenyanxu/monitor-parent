@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns:jpa="http://aries.apache.org/xmlns/jpa/v2.0.0"
+           xmlns:tx="http://aries.apache.org/xmlns/transactions/v1.2.0"
+           xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+    <jpa:enable/>
+    <tx:enable-annotations/>
+    <reference id="hardwareLogBeanDao" interface="com.kalix.monitor.hardware.api.dao.IHardwareLogBeanDao"/>
+    <reference id="hardwareInfoBeanDao" interface="com.kalix.monitor.hardware.api.dao.IHardwareInfoBeanDao"/>
+
+    <!--硬件信息服务注册-->
+    <bean id="hardwareInfoBeanServiceImpl" class="com.kalix.monitor.hardware.biz.HardwareInfoBeanServiceImpl">
+        <property name="dao" ref="hardwareInfoBeanDao"/>
+        <property name="hardwareLogBeanDao" ref="hardwareLogBeanDao"/>
+    </bean>
+    <service id="hardwareInfoBeanService" ref="hardwareInfoBeanServiceImpl"
+             interface="com.kalix.monitor.hardware.api.biz.IHardwareInfoBeanService"/>
+
+    <!--硬件信息日志服务注册-->
+
+    <bean id="hardwareLogBeanServiceImpl" class="com.kalix.monitor.hardware.biz.HardwareLogBeanServiceImpl">
+        <property name="dao" ref="hardwareLogBeanDao"/>
+    </bean>
+    <service id="hardwareLogBeanService" ref="hardwareLogBeanServiceImpl"
+             interface="com.kalix.monitor.hardware.api.biz.IHardwareLogBeanService"/>
+
+
+
+</blueprint>

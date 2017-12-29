@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- default-activation="lazy" -->
+<blueprint xmlns:jpa="http://aries.apache.org/xmlns/jpa/v2.0.0"
+           xmlns:tx="http://aries.apache.org/xmlns/transactions/v1.2.0"
+           xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+    <jpa:enable/>
+    <tx:enable-annotations/>
+
+    <!--硬件信息dao-->
+    <service id="hardwareInfoBeanDao" ref="hardwareInfoBeanDaoImpl" interface="com.kalix.monitor.hardware.api.dao.IHardwareInfoBeanDao"/>
+
+    <bean id="hardwareInfoBeanDaoImpl"
+          class="com.kalix.monitor.hardware.dao.HardwareInfoBeanDaoImpl"> <!--init-method="init">-->
+        <tx:transaction method="*" value="Required"/>
+    </bean>
+
+    <!--硬件信息日志dao-->
+    <service id="hardwareLogBeanDao" ref="hardwareLogBeanDaoImpl" interface="com.kalix.monitor.hardware.api.dao.IHardwareLogBeanDao"/>
+
+    <bean id="hardwareLogBeanDaoImpl"
+          class="com.kalix.monitor.hardware.dao.HardwareLogBeanDaoImpl"> <!--init-method="init">-->
+        <tx:transaction method="*" value="Required"/>
+    </bean>
+
+
+</blueprint>
