@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+       http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
+    <reference id="hardwareinfoService" interface="com.kalix.monitor.hardware.api.biz.IHardwareInfoBeanService"/>
+    <reference id="hardwarelogService" interface="com.kalix.monitor.hardware.api.biz.IHardwareLogBeanService"/>
+    <bean id="hardwareInfoRoute" class="com.kalix.framework.core.impl.camel.BaseRouteBuilder">
+        <property name="beanName" value="com.kalix.monitor.hardware.entities.HardwareInfoBean"/>
+        <property name="rests">
+            <list>
+                <!-- 硬件信息 -->
+                <bean class="com.kalix.framework.core.api.camel.CustomRest">
+                    <property name="path" value="/restHardwareinfos/{id}"/>
+                    <property name="getParams" value="id:Long"/>
+                    <property name="getDescription" value="硬件信息重置"/>
+                    <property name="getOutType" value="com.kalix.framework.core.api.persistence.JsonStatus"/>
+                    <property name="getToUri" value="bean:hardwareinfoService?method=restHardwareinfo(${header.id})"/>
+                </bean>
+
+
+                <bean class="com.kalix.framework.core.api.camel.CustomRest">
+                    <property name="inType" value="com.kalix.monitor.hardware.entities.HardwareInfoBean"/>
+                    <property name="path" value="/hardwareinfos"/>
+                    <property name="postDescription" value="比对硬件信息"/>
+                    <property name="postOutType" value="com.kalix.framework.core.api.persistence.JsonStatus"/>
+                    <property name="postToUri" value="bean:hardwareinfoService?method=saveEntity"/>
+                </bean>
+                <!--<bean class="com.kalix.framework.core.api.camel.CustomRest">-->
+                   <!--<property name="path" value="/monitor/loginname/{loginname}"/>-->
+                   <!--<property name="getDescription" value="查询登录名是否存在"/>-->
+                   <!--<property name="getParams" value="loginname:path:string::登录名"/>-->
+                   <!--<property name="getOutType" value="java.lang.Boolean"/>-->
+                   <!--<property name="getToUri" value="bean:teacherService?method=existTeacherBeanByLoginName(${header.loginname})"/>-->
+               <!--</bean>-->
+            </list>
+        </property>
+    </bean>
+
+    <bean id="hardwareLogRoute" class="com.kalix.framework.core.impl.camel.BaseRouteBuilder">
+        <property name="beanName" value="com.kalix.monitor.hardware.entities.HardwareLogBean"/>
+        <property name="rests">
+            <list>
+                <!--<bean class="com.kalix.framework.core.api.camel.CustomRest">-->
+                <!--<property name="path" value="/monitor/loginname/{loginname}"/>-->
+                <!--<property name="getDescription" value="查询登录名是否存在"/>-->
+                <!--<property name="getParams" value="loginname:path:string::登录名"/>-->
+                <!--<property name="getOutType" value="java.lang.Boolean"/>-->
+                <!--<property name="getToUri" value="bean:teacherService?method=existTeacherBeanByLoginName(${header.loginname})"/>-->
+                <!--</bean>-->
+            </list>
+        </property>
+    </bean>
+
+
+    <camelContext id="hardwareInfoCamel" xmlns="http://camel.apache.org/schema/blueprint">
+        <routeBuilder ref="hardwareInfoRoute"/>
+    </camelContext>
+    <camelContext id="hardwareLogCamel" xmlns="http://camel.apache.org/schema/blueprint">
+        <routeBuilder ref="hardwareLogRoute"/>
+    </camelContext>
+</blueprint>
