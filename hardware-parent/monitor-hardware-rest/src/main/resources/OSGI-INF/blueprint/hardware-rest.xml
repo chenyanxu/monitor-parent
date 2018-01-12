@@ -48,6 +48,22 @@
                 <!--<property name="getOutType" value="java.lang.Boolean"/>-->
                 <!--<property name="getToUri" value="bean:teacherService?method=existTeacherBeanByLoginName(${header.loginname})"/>-->
                 <!--</bean>-->
+                <!-- 硬件信息 -->
+                <bean class="com.kalix.framework.core.api.camel.CustomRest">
+                    <property name="path" value="/restHardwareMails"/>
+                    <property name="getParams" value="Keyword:String"/>
+                    <property name="getDescription" value="邮箱设置"/>
+                    <property name="getOutType" value="com.kalix.framework.core.api.persistence.JsonStatus"/>
+                    <property name="getToUri" value="bean:hardwarelogService?method=restHardwareMail()"/>
+                </bean>
+
+                <bean class="com.kalix.framework.core.api.camel.CustomRest">
+                    <property name="path" value="/configureHardwareMails"/>
+                    <property name="inType" value="java.lang.String"/>
+                    <property name="postDescription" value="设置文件内容"/>
+                    <property name="postOutType" value="com.kalix.framework.core.api.persistence.JsonStatus"/>
+                    <property name="postToUri" value="bean:hardwarelogService?method=configureHardwareMail(${header.content})"/>
+                </bean>
             </list>
         </property>
     </bean>
