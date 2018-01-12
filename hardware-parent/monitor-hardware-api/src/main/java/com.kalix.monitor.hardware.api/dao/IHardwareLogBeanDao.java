@@ -1,7 +1,6 @@
 package com.kalix.monitor.hardware.api.dao;
 
 import com.kalix.framework.core.api.dao.IGenericDao;
-import com.kalix.monitor.hardware.entities.HardwareInfoBean;
 import com.kalix.monitor.hardware.entities.HardwareLogBean;
 
 /**

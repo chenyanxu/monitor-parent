@@ -4,12 +4,14 @@ package com.kalix.monitor.hardware.biz;
 import com.kalix.framework.core.api.persistence.JsonStatus;
 import com.kalix.framework.core.impl.biz.ShiroGenericBizServiceImpl;
 import com.kalix.framework.core.util.Assert;
+import com.kalix.middleware.mail.api.MailContent;
 import com.kalix.monitor.hardware.api.biz.IHardwareInfoBeanService;
+import com.kalix.monitor.hardware.api.biz.IHardwareLogBeanService;
 import com.kalix.monitor.hardware.api.dao.IHardwareInfoBeanDao;
 import com.kalix.monitor.hardware.api.dao.IHardwareLogBeanDao;
 import com.kalix.monitor.hardware.entities.HardwareInfoBean;
 import com.kalix.monitor.hardware.entities.HardwareLogBean;
-
+import com.kalix.middleware.mail.api.biz.IMailService;
 import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
@@ -21,9 +23,18 @@ public class HardwareInfoBeanServiceImpl extends ShiroGenericBizServiceImpl<IHar
 
     private JsonStatus jsonStatus = new JsonStatus();
     private IHardwareLogBeanDao hardwareLogBeanDao;
+    private IHardwareLogBeanService logBeanService;
+    private IMailService mailService;
 
     public void setHardwareLogBeanDao(IHardwareLogBeanDao hardwareLogBeanDao) {
         this.hardwareLogBeanDao = hardwareLogBeanDao;
+    }
+    public void setMailService(IMailService mailService) {
+        this.mailService = mailService;
+    }
+
+    public void setLogBeanService(IHardwareLogBeanService logBeanService) {
+        this.logBeanService = logBeanService;
     }
 
     @Override
@@ -115,6 +126,13 @@ public class HardwareInfoBeanServiceImpl extends ShiroGenericBizServiceImpl<IHar
                         this.beforeSaveEntity(logBean,jsonStatus);
                         logBean.setCreationDate(new Date());
                         hardwareLogBeanDao.save(logBean);
+
+                        MailContent mailContent = new MailContent();
+                        mailContent.setSubject("硬件检测异常信息");
+                        mailContent.setContent(comparResult.toString());
+                        mailContent.setReceivemail(logBeanService.getHardwareMail());
+                        mailService.sendMail(mailContent);
+
                     }else
                     {
                         HardwareLogBean logBean= new HardwareLogBean();

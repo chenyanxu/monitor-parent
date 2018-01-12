@@ -6,11 +6,12 @@
     <tx:enable-annotations/>
     <reference id="hardwareLogBeanDao" interface="com.kalix.monitor.hardware.api.dao.IHardwareLogBeanDao"/>
     <reference id="hardwareInfoBeanDao" interface="com.kalix.monitor.hardware.api.dao.IHardwareInfoBeanDao"/>
-
+        <reference id="mailService" interface="com.kalix.middleware.mail.api.biz.IMailService"/>
     <!--硬件信息服务注册-->
     <bean id="hardwareInfoBeanServiceImpl" class="com.kalix.monitor.hardware.biz.HardwareInfoBeanServiceImpl">
         <property name="dao" ref="hardwareInfoBeanDao"/>
         <property name="hardwareLogBeanDao" ref="hardwareLogBeanDao"/>
+        <property name="mailService" ref="mailService"/>
     </bean>
     <service id="hardwareInfoBeanService" ref="hardwareInfoBeanServiceImpl"
              interface="com.kalix.monitor.hardware.api.biz.IHardwareInfoBeanService"/>

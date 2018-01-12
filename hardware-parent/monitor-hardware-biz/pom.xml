@@ -22,5 +22,11 @@
             <groupId>com.kalix.monitor.hardware</groupId>
             <artifactId>monitor-hardware-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.kalix.middleware.mail</groupId>
+            <artifactId>middleware-mail-api</artifactId>
+            <version>${project.middleware.version}</version>
+        </dependency>
     </dependencies>
+
 </project>
