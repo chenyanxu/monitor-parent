@@ -23,7 +23,7 @@ public class HardwareInfoBeanServiceImpl extends ShiroGenericBizServiceImpl<IHar
 
     private JsonStatus jsonStatus = new JsonStatus();
     private IHardwareLogBeanDao hardwareLogBeanDao;
-    private IHardwareLogBeanService logBeanService;
+    private IHardwareLogBeanService hardwareLogBeanService;
     private IMailService mailService;
 
     public void setHardwareLogBeanDao(IHardwareLogBeanDao hardwareLogBeanDao) {
@@ -33,8 +33,8 @@ public class HardwareInfoBeanServiceImpl extends ShiroGenericBizServiceImpl<IHar
         this.mailService = mailService;
     }
 
-    public void setLogBeanService(IHardwareLogBeanService logBeanService) {
-        this.logBeanService = logBeanService;
+    public void setLogBeanService(IHardwareLogBeanService hardwareLogBeanService) {
+        this.hardwareLogBeanService = hardwareLogBeanService;
     }
 
     @Override
@@ -123,15 +123,14 @@ public class HardwareInfoBeanServiceImpl extends ShiroGenericBizServiceImpl<IHar
                         logBean.setInfoid(infoBean.getId());
                         logBean.setComparison(comparResult.toString());
 
-                        this.beforeSaveEntity(logBean,jsonStatus);
                         logBean.setCreationDate(new Date());
-                        hardwareLogBeanDao.save(logBean);
-
-                        MailContent mailContent = new MailContent();
-                        mailContent.setSubject("硬件检测异常信息");
-                        mailContent.setContent(comparResult.toString());
-                        mailContent.setReceivemail(logBeanService.getHardwareMail());
-                        mailService.sendMail(mailContent);
+                        hardwareLogBeanService.saveEntity(logBean);
+//
+//                        MailContent mailContent = new MailContent();
+//                        mailContent.setSubject("硬件检测异常信息");
+//                        mailContent.setContent(comparResult.toString());
+//                        mailContent.setReceivemail(logBeanService.getHardwareMail());
+//                        mailService.sendMail(mailContent);
 
                     }else
                     {
@@ -141,9 +140,8 @@ public class HardwareInfoBeanServiceImpl extends ShiroGenericBizServiceImpl<IHar
                         logBean.setInfoid(infoBean.getId());
                         logBean.setComparison("信息相同");
 
-                        this.beforeSaveEntity(logBean,jsonStatus);
                         logBean.setCreationDate(new Date());
-                        hardwareLogBeanDao.save(logBean);
+                        hardwareLogBeanService.saveEntity(logBean);
                     }
                 }
             }else {
