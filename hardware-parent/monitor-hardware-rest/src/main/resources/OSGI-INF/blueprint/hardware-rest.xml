@@ -53,7 +53,7 @@
                     <property name="path" value="/restHardwareMails"/>
                     <property name="getParams" value="Keyword:String"/>
                     <property name="getDescription" value="邮箱设置"/>
-                    <property name="getOutType" value="com.kalix.framework.core.api.persistence.JsonStatus"/>
+                    <property name="getOutType" value="com.kalix.framework.core.api.persistence.JsonData"/>
                     <property name="getToUri" value="bean:hardwarelogService?method=restHardwareMail()"/>
                 </bean>
 

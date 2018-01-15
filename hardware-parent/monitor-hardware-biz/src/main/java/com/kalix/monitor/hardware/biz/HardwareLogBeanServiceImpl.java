@@ -2,6 +2,7 @@ package com.kalix.monitor.hardware.biz;
 
 
 import com.google.gson.*;
+import com.kalix.framework.core.api.persistence.JsonData;
 import com.kalix.framework.core.api.persistence.JsonStatus;
 import com.kalix.framework.core.impl.biz.ShiroGenericBizServiceImpl;
 import com.kalix.framework.core.util.StringUtils;
@@ -18,8 +19,9 @@ import java.util.*;
 public class HardwareLogBeanServiceImpl extends ShiroGenericBizServiceImpl<IHardwareLogBeanDao, HardwareLogBean> implements IHardwareLogBeanService {
 
     private JsonStatus jsonStatus = new JsonStatus();
-    public JsonStatus restHardwareMail() {
 
+    public JsonData restHardwareMail() {
+        JsonData jsondata = new JsonData();
         Dictionary<String, Object> config=ConfigUtil.getAllConfig("config.monitor.config");
 
         HashMap map = new HashMap();
@@ -50,18 +52,9 @@ public class HardwareLogBeanServiceImpl extends ShiroGenericBizServiceImpl<IHard
             }
 
         }
-
-        Gson gson=new Gson();
-        JsonParser jsonParser = new JsonParser();
-        JsonElement el = jsonParser.parse(gson.toJson(list));
-//        //jsonStatus.(gson.toJson(map));
-        JsonArray jsonArray = null;
-        if(el.isJsonArray()){
-            jsonArray = el.getAsJsonArray();
-        }
         jsonStatus.setSuccess(true);
-        jsonStatus.setMsg(jsonArray.toString());
-        return jsonStatus;
+        jsondata.setData(list);
+        return jsondata;
     }
 
 
