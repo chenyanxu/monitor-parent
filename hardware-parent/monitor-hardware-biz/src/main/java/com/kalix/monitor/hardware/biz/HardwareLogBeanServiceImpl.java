@@ -20,6 +20,12 @@ public class HardwareLogBeanServiceImpl extends ShiroGenericBizServiceImpl<IHard
 
     private JsonStatus jsonStatus = new JsonStatus();
 
+
+    /**
+     * 获取邮箱配置信息
+     *
+     * @return
+     */
     public JsonData restHardwareMail() {
         JsonData jsondata = new JsonData();
         Dictionary<String, Object> config=ConfigUtil.getAllConfig("config.monitor.config");
@@ -57,7 +63,11 @@ public class HardwareLogBeanServiceImpl extends ShiroGenericBizServiceImpl<IHard
         return jsondata;
     }
 
-
+    /**
+     * 保存邮箱配置信息
+     *
+     * @return
+     */
     public  JsonStatus configureHardwareMail(String content)
     {
 
@@ -77,7 +87,11 @@ public class HardwareLogBeanServiceImpl extends ShiroGenericBizServiceImpl<IHard
         jsonStatus.setSuccess(true);
         return jsonStatus;
     }
-
+    /**
+     * 获取邮箱地址
+     *
+     * @return
+     */
     public  Map getHardwareMail()
     {
         Map map = new HashMap();
