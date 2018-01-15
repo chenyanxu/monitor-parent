@@ -11,7 +11,7 @@
             <list>
                 <!-- 硬件信息 -->
                 <bean class="com.kalix.framework.core.api.camel.CustomRest">
-                    <property name="path" value="/restHardwareinfos/{id}"/>
+                    <property name="path" value="/resetHardwareinfos/{id}"/>
                     <property name="getParams" value="id:Long"/>
                     <property name="getDescription" value="硬件信息重置"/>
                     <property name="getOutType" value="com.kalix.framework.core.api.persistence.JsonStatus"/>
@@ -50,7 +50,7 @@
                 <!--</bean>-->
                 <!-- 硬件信息 -->
                 <bean class="com.kalix.framework.core.api.camel.CustomRest">
-                    <property name="path" value="/restHardwareMails"/>
+                    <property name="path" value="/resetHardwareMails"/>
                     <property name="getParams" value="Keyword:String"/>
                     <property name="getDescription" value="邮箱设置"/>
                     <property name="getOutType" value="com.kalix.framework.core.api.persistence.JsonData"/>

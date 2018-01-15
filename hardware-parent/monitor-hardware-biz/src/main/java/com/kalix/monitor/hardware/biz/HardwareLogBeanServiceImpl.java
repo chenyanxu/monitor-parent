@@ -1,8 +1,6 @@
 package com.kalix.monitor.hardware.biz;
 
-
-import com.google.gson.*;
-import com.kalix.framework.core.api.config.IAdminConfigService;
+import com.kalix.framework.core.api.config.IConfigService;
 import com.kalix.framework.core.api.persistence.JsonData;
 import com.kalix.framework.core.api.persistence.JsonStatus;
 import com.kalix.framework.core.impl.biz.ShiroGenericBizServiceImpl;
@@ -20,10 +18,10 @@ import java.util.*;
 public class HardwareLogBeanServiceImpl extends ShiroGenericBizServiceImpl<IHardwareLogBeanDao, HardwareLogBean> implements IHardwareLogBeanService {
 
     private JsonStatus jsonStatus = new JsonStatus();
-    private IAdminConfigService adminConfigService;
+    private IConfigService configService;
 
-    public void setAdminConfigService(IAdminConfigService adminConfigService) {
-        this.adminConfigService = adminConfigService;
+    public void setAdminConfigService(IConfigService configService) {
+        this.configService = configService;
     }
 
     /**
@@ -32,7 +30,7 @@ public class HardwareLogBeanServiceImpl extends ShiroGenericBizServiceImpl<IHard
      * @return
      */
     public JsonData getHardwareMailInfo() {
-        JsonData  jsondata= adminConfigService.getConfigInfo("config.monitor.config");
+        JsonData  jsondata= configService.getConfigInfo("config.monitor.config");
         jsonStatus.setSuccess(true);
         return jsondata;
     }
@@ -44,7 +42,7 @@ public class HardwareLogBeanServiceImpl extends ShiroGenericBizServiceImpl<IHard
      */
     public  JsonStatus configureHardwareMail(String content)
     {
-        adminConfigService.configureConfigInfo(content,"config.monitor.config");
+        configService.configureConfigInfo(content,"config.monitor.config");
         jsonStatus.setMsg("设置成功！");
         jsonStatus.setSuccess(true);
         return jsonStatus;

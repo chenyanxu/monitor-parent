@@ -7,7 +7,7 @@
     <reference id="hardwareLogBeanDao" interface="com.kalix.monitor.hardware.api.dao.IHardwareLogBeanDao"/>
     <reference id="hardwareInfoBeanDao" interface="com.kalix.monitor.hardware.api.dao.IHardwareInfoBeanDao"/>
     <reference id="mailService" interface="com.kalix.middleware.mail.api.biz.IMailService"/>
-    <reference id="adminConfigService" interface="com.kalix.framework.core.api.config.IAdminConfigService"/>
+    <reference id="configService" interface="com.kalix.framework.core.api.config.IConfigService"/>
     <!--硬件信息服务注册-->
     <bean id="hardwareInfoBeanServiceImpl" class="com.kalix.monitor.hardware.biz.HardwareInfoBeanServiceImpl">
         <property name="dao" ref="hardwareInfoBeanDao"/>
@@ -23,7 +23,7 @@
 
     <bean id="hardwareLogBeanServiceImpl" class="com.kalix.monitor.hardware.biz.HardwareLogBeanServiceImpl">
         <property name="dao" ref="hardwareLogBeanDao"/>
-        <property name="adminConfigService" ref="adminConfigService"/>
+        <property name="configService" ref="configService"/>
 
     </bean>
     <service id="hardwareLogBeanService" ref="hardwareLogBeanServiceImpl"
