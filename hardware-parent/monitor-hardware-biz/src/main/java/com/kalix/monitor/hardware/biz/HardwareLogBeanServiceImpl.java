@@ -26,7 +26,7 @@ public class HardwareLogBeanServiceImpl extends ShiroGenericBizServiceImpl<IHard
      *
      * @return
      */
-    public JsonData restHardwareMail() {
+    public JsonData getHardwareMailInfo() {
         JsonData jsondata = new JsonData();
         Dictionary<String, Object> config=ConfigUtil.getAllConfig("config.monitor.config");
 

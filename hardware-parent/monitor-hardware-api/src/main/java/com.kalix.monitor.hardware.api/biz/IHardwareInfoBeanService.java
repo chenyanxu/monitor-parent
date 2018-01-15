@@ -10,5 +10,5 @@ import com.kalix.monitor.hardware.entities.HardwareInfoBean;
  * Created by dell on 14-1-17.
  */
 public interface IHardwareInfoBeanService extends IBizService<HardwareInfoBean> {
-    JsonStatus restHardwareinfo(Long id);
+    JsonStatus resetHardwareinfo(Long id);
 }

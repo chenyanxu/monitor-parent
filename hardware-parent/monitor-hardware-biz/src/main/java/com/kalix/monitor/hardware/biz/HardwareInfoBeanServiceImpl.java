@@ -39,7 +39,7 @@ public class HardwareInfoBeanServiceImpl extends ShiroGenericBizServiceImpl<IHar
     }
 
     @Override
-    public JsonStatus restHardwareinfo(Long id) {
+    public JsonStatus resetHardwareinfo(Long id) {
 
         HardwareInfoBean Entity = dao.get(id);
         Entity.setFlag(1L);
