@@ -15,6 +15,7 @@ import com.kalix.middleware.mail.api.biz.IMailService;
 import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by fj on 2017-8-17.
@@ -125,12 +126,13 @@ public class HardwareInfoBeanServiceImpl extends ShiroGenericBizServiceImpl<IHar
 
                         logBean.setCreationDate(new Date());
                         hardwareLogBeanService.saveEntity(logBean);
-//
-//                        MailContent mailContent = new MailContent();
-//                        mailContent.setSubject("硬件检测异常信息");
-//                        mailContent.setContent(comparResult.toString());
-//                        mailContent.setReceivemail(logBeanService.getHardwareMail());
-//                        mailService.sendMail(mailContent);
+
+                        MailContent mailContent = new MailContent();
+                        mailContent.setSubject("硬件检测异常信息");
+                        mailContent.setContent(comparResult.toString());
+                        Map map=hardwareLogBeanService.getHardwareMail();
+                        mailContent.setReceivemail(map);
+                        mailService.sendMail(mailContent);
 
                     }else
                     {
