@@ -64,6 +64,15 @@
                     <property name="postOutType" value="com.kalix.framework.core.api.persistence.JsonStatus"/>
                     <property name="postToUri" value="bean:hardwarelogService?method=configureHardwareMail(${header.content})"/>
                 </bean>
+
+                <!-- 硬件信息 -->
+                <bean class="com.kalix.framework.core.api.camel.CustomRest">
+                    <property name="path" value="/resetHardwareMails/{id}"/>
+                    <property name="getParams" value="id:String"/>
+                    <property name="getDescription" value="获取配置数据"/>
+                    <property name="getOutType" value="com.kalix.framework.core.api.persistence.JsonStatus"/>
+                    <property name="getToUri" value="bean:hardwarelogService?method=congfigureHardwareinfo(${header.id})"/>
+                </bean>
             </list>
         </property>
     </bean>

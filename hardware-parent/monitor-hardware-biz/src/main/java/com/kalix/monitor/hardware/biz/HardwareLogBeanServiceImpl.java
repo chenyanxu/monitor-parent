@@ -80,5 +80,16 @@ public class HardwareLogBeanServiceImpl extends ShiroGenericBizServiceImpl<IHard
         }
         return map;
     }
+    /**
+     * 根据id获取配置信息
+     *
+     * @return
+     */
+    public  JsonData congfigureHardwareinfo(String id)
+    {
+        JsonData  jsondata= configService.getConfigInfoById("config.monitor.config",id);
+        jsonStatus.setSuccess(true);
+        return jsondata;
+    }
 
 }
