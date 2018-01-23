@@ -14,6 +14,7 @@ import com.kalix.monitor.hardware.entities.HardwareLogBean;
 import com.kalix.middleware.mail.api.biz.IMailService;
 import javax.transaction.Transactional;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -129,8 +130,10 @@ public class HardwareInfoBeanServiceImpl extends ShiroGenericBizServiceImpl<IHar
 
                         MailContent mailContent = new MailContent();
                         mailContent.setSubject("硬件检测异常信息");
-                        mailContent.setContent(comparResult.toString());
+                        mailContent.setContent(comparResult.toString()+"，IP地址："+entity.getIp());
                         Map map=hardwareLogBeanService.getHardwareMail();
+                //        Map map= new HashMap();
+                //        map.put("mail","174733078@qq.com");
                         mailContent.setReceivemail(map);
                         mailService.sendMail(mailContent);
 
