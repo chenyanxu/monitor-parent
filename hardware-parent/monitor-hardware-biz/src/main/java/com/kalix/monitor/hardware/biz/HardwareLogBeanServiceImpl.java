@@ -18,35 +18,7 @@ import java.util.*;
 public class HardwareLogBeanServiceImpl extends ShiroGenericBizServiceImpl<IHardwareLogBeanDao, HardwareLogBean> implements IHardwareLogBeanService {
 
     private JsonStatus jsonStatus = new JsonStatus();
-    private IConfigService configService;
 
-    public void setAdminConfigService(IConfigService configService) {
-        this.configService = configService;
-    }
-
-    /**
-     * 获取邮箱配置信息
-     *
-     * @return
-     */
-    public JsonData getHardwareMailInfo() {
-        JsonData  jsondata= configService.getConfigInfo("config.monitor.config");
-        jsonStatus.setSuccess(true);
-        return jsondata;
-    }
-
-    /**
-     * 保存邮箱配置信息
-     *
-     * @return
-     */
-    public  JsonStatus configureHardwareMail(String content)
-    {
-        configService.configureConfigInfo(content,"config.monitor.config");
-        jsonStatus.setMsg("设置成功！");
-        jsonStatus.setSuccess(true);
-        return jsonStatus;
-    }
     /**
      * 获取邮箱地址
      *
@@ -80,16 +52,4 @@ public class HardwareLogBeanServiceImpl extends ShiroGenericBizServiceImpl<IHard
         }
         return map;
     }
-    /**
-     * 根据id获取配置信息
-     *
-     * @return
-     */
-    public  JsonData congfigureHardwareinfo(String id)
-    {
-        JsonData  jsondata= configService.getConfigInfoById("config.monitor.config",id);
-        jsonStatus.setSuccess(true);
-        return jsondata;
-    }
-
 }

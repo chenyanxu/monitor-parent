@@ -13,8 +13,5 @@ import java.util.Map;
  * Created by dell on 14-1-17.
  */
 public interface IHardwareLogBeanService extends IBizService<HardwareLogBean> {
-    JsonData getHardwareMailInfo();
-    JsonData congfigureHardwareinfo(String id);
-    JsonStatus configureHardwareMail(String content);
     Map getHardwareMail();
 }
