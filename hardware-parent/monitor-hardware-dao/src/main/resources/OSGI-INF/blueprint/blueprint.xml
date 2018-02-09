@@ -24,4 +24,12 @@
     </bean>
 
 
+    <!--硬件统计dao-->
+    <service id="hardwareStatisticDao" ref="hardwareStatisticDaoImpl" interface="com.kalix.monitor.hardware.api.dao.IHardwareStatisticDao"/>
+
+    <bean id="hardwareStatisticDaoImpl"
+          class="com.kalix.monitor.hardware.dao.HardwareStatisticDaoImpl"> <!--init-method="init">-->
+        <tx:transaction method="*" value="Required"/>
+    </bean>
+
 </blueprint>

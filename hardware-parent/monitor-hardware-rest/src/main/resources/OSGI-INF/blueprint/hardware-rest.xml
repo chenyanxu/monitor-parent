@@ -5,6 +5,7 @@
        http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
     <reference id="hardwareinfoService" interface="com.kalix.monitor.hardware.api.biz.IHardwareInfoBeanService"/>
     <reference id="hardwarelogService" interface="com.kalix.monitor.hardware.api.biz.IHardwareLogBeanService"/>
+    <reference id="hardwarestatisticService" interface="com.kalix.monitor.hardware.api.biz.IHardwareStatisticService"/>
     <bean id="hardwareInfoRoute" class="com.kalix.framework.core.impl.camel.BaseRouteBuilder">
         <property name="beanName" value="com.kalix.monitor.hardware.entities.HardwareInfoBean"/>
         <property name="rests">
@@ -77,6 +78,22 @@
         </property>
     </bean>
 
+    <bean id="hardwareStatisticRoute" class="com.kalix.framework.core.impl.camel.BaseRouteBuilder">
+        <property name="beanName" value="com.kalix.monitor.hardware.entities.HardwareLogBean"/>
+        <property name="rests">
+            <list>
+                <bean class="com.kalix.framework.core.api.camel.CustomRest">
+                    <property name="path" value="/getHardwareStatistics"/>
+                    <property name="getParams" value="Keyword:String"/>
+                    <property name="getDescription" value="硬件统计"/>
+                    <property name="getOutType" value="com.kalix.framework.core.api.persistence.JsonData"/>
+                    <property name="getToUri" value="bean:hardwarestatisticService?method=getHardwareStatistic(${header.jsonStr})"/>
+                </bean>
+
+            </list>
+        </property>
+    </bean>
+
 
     <camelContext id="hardwareInfoCamel" xmlns="http://camel.apache.org/schema/blueprint">
         <routeBuilder ref="hardwareInfoRoute"/>
@@ -84,4 +101,8 @@
     <camelContext id="hardwareLogCamel" xmlns="http://camel.apache.org/schema/blueprint">
         <routeBuilder ref="hardwareLogRoute"/>
     </camelContext>
+    <camelContext id="hardwareStatisticCamel" xmlns="http://camel.apache.org/schema/blueprint">
+        <routeBuilder ref="hardwareStatisticRoute"/>
+    </camelContext>
+
 </blueprint>

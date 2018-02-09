@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.util.Date;
 
 /**
  * Created by Administrator_ on 2017/12/15.
@@ -20,7 +21,15 @@ public class HardwareLogBean extends PersistentEntity {
     private String ip;
     @ApiModelProperty(value = "比对结果", example = "相同")
     private String Comparison;
+    private Date creationdate;
 
+    public Date getCreationdate() {
+        return creationdate;
+    }
+
+    public void setCreationdate(Date creationdate) {
+        this.creationdate = creationdate;
+    }
 
     public Long getInfoid() {
         return infoid;

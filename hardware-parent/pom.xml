@@ -18,6 +18,7 @@
         <module>monitor-hardware-dao</module>
         <module>monitor-hardware-biz</module>
         <module>monitor-hardware-rest</module>
+        <!--<module>monitor-hardware-dto</module>-->
     </modules>
     <packaging>pom</packaging>
 

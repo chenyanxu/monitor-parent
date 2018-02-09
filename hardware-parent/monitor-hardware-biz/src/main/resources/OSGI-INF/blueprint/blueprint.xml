@@ -28,8 +28,7 @@
              interface="com.kalix.monitor.hardware.api.biz.IHardwareLogBeanService"/>
     <!--硬件统计注册-->
     <bean id="hardwareStatisticServiceImpl" class="com.kalix.monitor.hardware.biz.HardwareStatisticServiceImpl">
-        <property name="hardwareStatisticDao" ref="hardwareStatisticDao"/>
-
+        <property name="dao" ref="hardwareStatisticDao"/>
     </bean>
     <service id="hardwareStatisticService" ref="hardwareStatisticServiceImpl"
              interface="com.kalix.monitor.hardware.api.biz.IHardwareStatisticService"/>

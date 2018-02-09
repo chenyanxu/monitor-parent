@@ -27,6 +27,14 @@
             <artifactId>middleware-mail-api</artifactId>
             <version>${project.middleware.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.abel533</groupId>
+            <artifactId>ECharts</artifactId>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.kalix.monitor.hardware</groupId>-->
+            <!--<artifactId>monitor-hardware-dto</artifactId>-->
+        <!--</dependency>-->
     </dependencies>
 
 </project>
