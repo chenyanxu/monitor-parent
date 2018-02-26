@@ -85,12 +85,12 @@ public class HardwareStatisticServiceImpl extends ShiroGenericBizServiceImpl<IHa
                 sql="select t.* from (select '装机数量' as zj,count(mac) from monitor_hardware_info) t";
                 NoSelect="chartSelectValue,hardwareSelectValue,creationDate:begin:gt,creationDate:end:lt";
                 sql_yc += CommonMethod.createWhereConditionSelect(jsonStr,sort,NoSelect);
-                list_yc=dao.findByNativeSql(sql_yc);
+                list_yc=dao.findArrayByNativeSql(sql_yc);
             }
 
 
 
-            List list=dao.findByNativeSql(sql);
+            List list=dao.findArrayByNativeSql(sql);
             if(list!=null&&list.size()!=0)
             {
                 if(list_yc!=null&&list_yc.size()!=0)
