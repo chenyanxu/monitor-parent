@@ -18,6 +18,10 @@
     </properties>
     <dependencies>
         <dependency>
+            <groupId>com.kalix.framework.core</groupId>
+            <artifactId>framework-core-impl</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.kalix.monitor.hardware</groupId>
             <artifactId>monitor-hardware-entities</artifactId>
         </dependency>
