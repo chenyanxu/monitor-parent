@@ -21,15 +21,6 @@ public class HardwareLogBean extends PersistentEntity {
     private String ip;
     @ApiModelProperty(value = "比对结果", example = "相同")
     private String Comparison;
-    private Date creationdate;
-
-    public Date getCreationdate() {
-        return creationdate;
-    }
-
-    public void setCreationdate(Date creationdate) {
-        this.creationdate = creationdate;
-    }
 
     public Long getInfoid() {
         return infoid;

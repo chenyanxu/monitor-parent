@@ -125,7 +125,7 @@ public class HardwareInfoBeanServiceImpl extends ShiroGenericBizServiceImpl<IHar
                         logBean.setInfoid(infoBean.getId());
                         logBean.setComparison(comparResult.toString());
 
-                        logBean.setCreationDate(new Date());
+                       // logBean.setCreationDate(new Date());
                         hardwareLogBeanService.saveEntity(logBean);
 
                         MailContent mailContent = new MailContent();
@@ -145,7 +145,6 @@ public class HardwareInfoBeanServiceImpl extends ShiroGenericBizServiceImpl<IHar
                         logBean.setInfoid(infoBean.getId());
                         logBean.setComparison("信息相同");
 
-                        logBean.setCreationDate(new Date());
                         hardwareLogBeanService.saveEntity(logBean);
                     }
                 }
