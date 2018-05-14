@@ -53,7 +53,7 @@ public class HardwareStatisticServiceImpl extends ShiroGenericBizServiceImpl<IHa
             String endDate=(String)jsonMap.get("creationDate:end:lt");
 
             if ("1".equals(chartSelectValue)) {
-                chartTitle="异常比例统计";
+                chartTitle="异常趋势统计";
                 sql="select t.* from (SELECT to_number(to_char(d.creationdate, 'mm'),'99G999D9S') as month,count(id)  from monitor_hardware_log d where d.creationDate>='"+beginDate+"' and d.creationDate<= '"+endDate+"' GROUP BY month order by month) t";
                 NoSelect="chartSelectValue,hardwareSelectValue,creationDate:begin:gt,creationDate:end:lt";
                 sql += CommonMethod.createWhereConditionSelect(jsonStr,sort,NoSelect);
@@ -80,8 +80,8 @@ public class HardwareStatisticServiceImpl extends ShiroGenericBizServiceImpl<IHa
                 }
 
             } else {
-                chartTitle="异常趋势统计";
-                sql_yc="select t.* from (select '异常数量' ,count(mac) as status from (SELECT mac from monitor_hardware_log d where d.creationDate>='"+beginDate+"' and d.creationDate<= '"+endDate+"' GROUP BY d.mac) as yc) t";
+                chartTitle="异常比例统计";
+                sql_yc="select t.* from (select '异常数量' ,count(mac) as status from (SELECT mac from monitor_hardware_log d where d.creationDate>='"+beginDate+"' and d.creationDate<= '"+endDate+"'  and d.comparison!='信息相同' GROUP BY d.mac) as yc) t";
                 sql="select t.* from (select '装机数量' as zj,count(mac) from monitor_hardware_info) t";
                 NoSelect="chartSelectValue,hardwareSelectValue,creationDate:begin:gt,creationDate:end:lt";
                 sql_yc += CommonMethod.createWhereConditionSelect(jsonStr,sort,NoSelect);
@@ -141,7 +141,7 @@ public class HardwareStatisticServiceImpl extends ShiroGenericBizServiceImpl<IHa
                 if ("2".equals(chartSelectValue)) {
                     chartData = pieChart(types, datas, chartTitle);
                 } else if ("1".equals(chartSelectValue)) {
-                    chartData = lineChart(types                                                            , datas, chartTitle);
+                    chartData = lineChart(types, datas, chartTitle);
                 } else {
                     chartData = pieChart(types, datas, "异常比例统计");
                 }
