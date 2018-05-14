@@ -41,9 +41,10 @@ public class HardwareInfoBeanServiceImpl extends ShiroGenericBizServiceImpl<IHar
 
     @Override
     public JsonStatus resetHardwareinfo(Long id) {
-
+        JsonStatus status = new JsonStatus();
         HardwareInfoBean Entity = dao.get(id);
         Entity.setFlag(1L);
+        beforeSaveEntity(Entity,status);
         return  super.updateEntity(Entity);
     }
 
@@ -81,7 +82,7 @@ public class HardwareInfoBeanServiceImpl extends ShiroGenericBizServiceImpl<IHar
                     // Long id=entity.getId();
                     dao.remove(Long.valueOf(strValue[1]));
                     super.beforeSaveEntity(entity,jsonStatus);
-                    entity.setCreationDate(new Date());
+                    //entity.setCreationDate(new Date());
                     dao.save(entity);
                     jsonStatus.setSuccess(true);
                     jsonStatus.setMsg("重置硬件信息成功！");

@@ -30,6 +30,16 @@ public class HardwareInfoBean extends PersistentEntity {
     private String networkAdapter;
     @ApiModelProperty(value = "重置标记位", example = "默认0，否则1")
     private Long flag=0L;
+    @ApiModelProperty(value = "条形码", example = "")
+    private String barcode;
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
 
     public Long getFlag() {
         return flag;
