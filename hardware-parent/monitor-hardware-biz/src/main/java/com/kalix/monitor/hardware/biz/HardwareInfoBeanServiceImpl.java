@@ -121,6 +121,7 @@ public class HardwareInfoBeanServiceImpl extends ShiroGenericBizServiceImpl<IHar
 
                     if(!"".equals(comparResult.toString())){
                         HardwareLogBean logBean= new HardwareLogBean();
+                        logBean.setBarcode(infoBean.getBarcode());
                         logBean.setIp(infoBean.getIp());
                         logBean.setMac(infoBean.getMac());
                         logBean.setInfoid(infoBean.getId());
@@ -141,6 +142,7 @@ public class HardwareInfoBeanServiceImpl extends ShiroGenericBizServiceImpl<IHar
                     }else
                     {
                         HardwareLogBean logBean= new HardwareLogBean();
+                        logBean.setBarcode(infoBean.getBarcode());
                         logBean.setIp(infoBean.getIp());
                         logBean.setMac(infoBean.getMac());
                         logBean.setInfoid(infoBean.getId());

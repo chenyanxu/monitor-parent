@@ -21,6 +21,15 @@ public class HardwareLogBean extends PersistentEntity {
     private String ip;
     @ApiModelProperty(value = "比对结果", example = "相同")
     private String Comparison;
+    private String barcode;
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
 
     public Long getInfoid() {
         return infoid;
