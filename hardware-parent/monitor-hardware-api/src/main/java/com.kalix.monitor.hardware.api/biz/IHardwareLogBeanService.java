@@ -14,4 +14,5 @@ import java.util.Map;
  */
 public interface IHardwareLogBeanService extends IBizService<HardwareLogBean> {
     Map getHardwareMail();
+    JsonData getHardwareOffline(Integer page, Integer limit, String jsonStr,Integer sort);
 }

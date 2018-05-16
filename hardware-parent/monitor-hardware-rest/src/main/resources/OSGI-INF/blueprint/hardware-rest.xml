@@ -74,6 +74,15 @@
                     <property name="getOutType" value="com.kalix.framework.core.api.persistence.JsonStatus"/>
                     <property name="getToUri" value="bean:hardwarelogService?method=congfigureHardwareinfo(${header.id})"/>
                 </bean>
+
+                <!-- 离线信息 -->
+                <bean class="com.kalix.framework.core.api.camel.CustomRest">
+                    <property name="path" value="/searchHardwareLogs"/>
+                    <property name="getParams" value="jsonStr:String;"/>
+                    <property name="getDescription" value="日志查询"/>
+                    <property name="getOutType" value="com.kalix.framework.core.api.persistence.JsonData"/>
+                    <property name="getToUri" value="bean:hardwarelogService?method=getHardwareOffline(${header.page},${header.limit},${header.jsonStr},${header.sort})"/>
+                </bean>
             </list>
         </property>
     </bean>

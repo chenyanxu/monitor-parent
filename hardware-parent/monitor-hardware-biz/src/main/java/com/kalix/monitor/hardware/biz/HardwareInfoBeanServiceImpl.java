@@ -1,6 +1,7 @@
 package com.kalix.monitor.hardware.biz;
 
 
+import com.kalix.framework.core.api.persistence.JsonData;
 import com.kalix.framework.core.api.persistence.JsonStatus;
 import com.kalix.framework.core.impl.biz.ShiroGenericBizServiceImpl;
 import com.kalix.framework.core.util.Assert;
@@ -58,6 +59,8 @@ public class HardwareInfoBeanServiceImpl extends ShiroGenericBizServiceImpl<IHar
             entity.setUpdateBy(userName);
         }
     }
+
+
 
     /**
      * 添加任务
